@@ -65,7 +65,7 @@ function Navbar() {
   const classes = useStyles();
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="fixed" style={{ background: "transparent" }}>
         <Container>
           <Toolbar>
             <Typography variant="h4" color="secondary" className={classes.logo}>
