@@ -69,7 +69,45 @@ const useStyles = makeStyles((theme) => ({
 function Navbar() {
   const classes = useStyles();
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 50 });
-  return <></>;
+  return (
+    <>
+      <AppBar position="fixed" color={trigger ? "primary" : "transparent"}>
+        <Container>
+          <Toolbar>
+            <Typography variant="h4" color="secondary" className={classes.logo}>
+              Binge
+            </Typography>
+            <Box width="80%" ml="auto">
+              <Grid container spacing={10}>
+                <Grid item xs={6} className={classes.tabWrapper}>
+                  <Typography>Genre</Typography>
+                  <Typography>Watch TV</Typography>
+                  <Typography>My List</Typography>
+                  <Typography>Device</Typography>
+                </Grid>
+                <Grid item xs={6} className={classes.tabWrapper}>
+                  <div className={classes.search}>
+                    <div className={classes.searchIcon}>
+                      <SearchIcon />
+                    </div>
+                    <InputBase
+                      placeholder="Search…"
+                      classes={{
+                        root: classes.inputRoot,
+                        input: classes.inputInput,
+                      }}
+                      inputProps={{ "aria-label": "search" }}
+                    />
+                  </div>
+                  <Typography>Menu</Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
+  );
 }
 
 export default Navbar;
