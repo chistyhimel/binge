@@ -5,10 +5,23 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #221f1f;
+  background: #131313;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
+.slick-slide > div {
+  margin: 0 15px;
+}
+.slick-slider {
+  margin: 0 -12px;
 }

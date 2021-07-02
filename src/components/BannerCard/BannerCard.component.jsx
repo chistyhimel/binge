@@ -4,9 +4,11 @@ import {
   Typography,
   Card,
   CardMedia,
+  Box,
 } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
+import StarIcon from "@material-ui/icons/Star";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,15 +41,15 @@ function BannerCard({ movie }) {
             <Grid item xs={4}>
               <CardMedia
                 component="img"
-                alt="Contemplative Reptile"
-                height="110"
+                alt={name}
+                height="100"
                 image={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                 title={name}
               />
             </Grid>
             <Grid item xs={8}>
               <Typography
-                variant="h5"
+                variant="h6"
                 className={classes.cardTitle}
                 gutterBottom
                 noWrap
@@ -57,13 +59,17 @@ function BannerCard({ movie }) {
               <Typography style={{ color: "#646464" }} color="textSecondary">
                 Action / Thriller
               </Typography>
-              <Typography
-                style={{ color: "#cecece" }}
-                color="textSecondary"
-                gutterBottom
-              >
-                {vote_average}
-              </Typography>
+
+              <Box display="flex">
+                <Typography
+                  style={{ color: "#cecece", paddingRight: "5px" }}
+                  color="textSecondary"
+                  gutterBottom
+                >
+                  {vote_average}
+                </Typography>
+                <StarIcon color="secondary" />
+              </Box>
             </Grid>
           </Grid>
         </CardContent>

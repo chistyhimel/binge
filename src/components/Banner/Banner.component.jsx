@@ -41,7 +41,7 @@ function Banner() {
       >
         <main className={classes.cardContainer}>
           <Container>
-            <Grid container spacing={5}>
+            <Grid container spacing={3}>
               {movies.length
                 ? movies.map((movie, idx) => (
                     <Grid key={movie.id} item xs={4}>
@@ -53,7 +53,6 @@ function Banner() {
           </Container>
         </main>
       </main>
-      hello
     </>
   );
 }

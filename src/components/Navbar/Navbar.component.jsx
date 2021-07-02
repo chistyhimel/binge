@@ -6,6 +6,7 @@ import {
   Grid,
   InputBase,
   Container,
+  useScrollTrigger,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles, useTheme } from "@material-ui/styles";
@@ -20,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+
+    "& > *": {
+      color: "#FFF",
+    },
   },
   search: {
     position: "relative",
@@ -63,45 +68,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   const classes = useStyles();
-  return (
-    <>
-      <AppBar position="fixed" style={{ background: "transparent" }}>
-        <Container>
-          <Toolbar>
-            <Typography variant="h4" color="secondary" className={classes.logo}>
-              Binge
-            </Typography>
-            <Box width="70%" ml="auto">
-              <Grid container spacing={10}>
-                <Grid item xs={6} className={classes.tabWrapper}>
-                  <Typography>Genre</Typography>
-                  <Typography>Watch TV</Typography>
-                  <Typography>My List</Typography>
-                  <Typography>Device</Typography>
-                </Grid>
-                <Grid item xs={6} className={classes.tabWrapper}>
-                  <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                      <SearchIcon />
-                    </div>
-                    <InputBase
-                      placeholder="Search…"
-                      classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                      }}
-                      inputProps={{ "aria-label": "search" }}
-                    />
-                  </div>
-                  <Typography>Menu</Typography>
-                </Grid>
-              </Grid>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </>
-  );
+  const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 50 });
+  return <></>;
 }
 
 export default Navbar;
