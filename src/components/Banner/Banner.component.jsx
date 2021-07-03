@@ -42,7 +42,7 @@ function Banner() {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           infinite: true,
         },
       },
@@ -52,6 +52,7 @@ function Banner() {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
+          infinite: true,
         },
       },
     ],
