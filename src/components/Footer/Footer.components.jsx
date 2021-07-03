@@ -41,6 +41,7 @@ function Footer() {
             justifyContent="space-between"
             alignItems="center"
             flexWrap="wrap"
+            paddingY={5}
           >
             <Box order={matches ? 1 : 1}>
               <Typography variant="h2" className={classes.logo}>
@@ -48,7 +49,7 @@ function Footer() {
               </Typography>
             </Box>
 
-            <Box order={matches ? 3 : 2} width={matches ? "100vw" : "auto"}>
+            <Box order={matches ? 3 : 2} width={matches ? "100vw" : "50%"}>
               <Box
                 display="flex"
                 justifyContent="space-between"
