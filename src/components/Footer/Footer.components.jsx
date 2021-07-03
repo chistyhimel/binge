@@ -64,6 +64,10 @@ function Footer() {
               <Typography align="center" gutterBottom>
                 © 2021 Red Dot Digital Limited.
               </Typography>
+              <br />
+              <Typography align="center">
+                Demo Project of PRIMEX infosys
+              </Typography>
             </Box>
 
             <Box
