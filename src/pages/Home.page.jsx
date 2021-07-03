@@ -9,17 +9,17 @@ function Home() {
     <>
       <Banner />
       <Row
-        title="NETFLIX ORGINALS"
+        title="TRENDING"
         isLargeRow
         fetchUrl={requests.fetchNetflixOrginals}
       />
-      <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
-      <Row title="Top Rated" fetchUrl={requests.fetchTopRated} />
-      <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
-      <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
-      <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
-      <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
-      <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
+      <Row title="NEW RELEASE" fetchUrl={requests.fetchTrending} />
+      <Row title="BINGE ORGINALS" fetchUrl={requests.fetchTopRated} />
+      <Row title="POPULAR IN BINGE" fetchUrl={requests.fetchActionMovies} />
+      <Row title="COMEDY MOVIES" fetchUrl={requests.fetchComedyMovies} />
+      <Row title="HORROR MOVIES" fetchUrl={requests.fetchHorrorMovies} />
+      <Row title="ROMANCE MOVIES" fetchUrl={requests.fetchRomanceMovies} />
+      <Row title="DOCUMENTARIES" fetchUrl={requests.fetchDocumentaries} />
       <Footer />
     </>
   );
