@@ -4,14 +4,15 @@ import {
   Typography,
   Box,
   Grid,
-  InputBase,
   Container,
   useScrollTrigger,
+  useMediaQuery,
 } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
+
 import { makeStyles, useTheme } from "@material-ui/styles";
-import { fade } from "@material-ui/core/styles";
 import React from "react";
+import Sidebar from "../Sidebar/Sidebar.component";
+import Searchbar from "./../Searchbar/Searchbar.component";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -26,82 +27,42 @@ const useStyles = makeStyles((theme) => ({
       color: "#FFF",
     },
   },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-    width: 250,
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
 }));
 
 function Navbar() {
   const classes = useStyles();
+  const theme = useTheme();
   const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 50 });
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  // const matches = useMediaQuery("(max-width:600px)");
+
+  console.log(theme);
+
   return (
     <>
       <AppBar position="fixed" color={trigger ? "primary" : "transparent"}>
         <Container>
-          <Toolbar>
+          <Toolbar disableGutters>
             <Typography variant="h4" color="secondary" className={classes.logo}>
               Binge
             </Typography>
-            <Box width="80%" ml="auto">
-              <Grid container spacing={10}>
-                <Grid item xs={6} className={classes.tabWrapper}>
-                  <Typography>Genre</Typography>
-                  <Typography>Watch TV</Typography>
-                  <Typography>My List</Typography>
-                  <Typography>Device</Typography>
+            <Box width={matches ? "auto" : "80%"} ml="auto">
+              {matches ? (
+                <Sidebar />
+              ) : (
+                <Grid container spacing={10}>
+                  <Grid item xs={6} className={classes.tabWrapper}>
+                    <Typography>Genre</Typography>
+                    <Typography>Watch TV</Typography>
+                    <Typography>My List</Typography>
+                    <Typography>Device</Typography>
+                  </Grid>
+                  <Grid item xs={6} className={classes.tabWrapper}>
+                    <Searchbar />
+                    <Typography>Menu</Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={6} className={classes.tabWrapper}>
-                  <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                      <SearchIcon />
-                    </div>
-                    <InputBase
-                      placeholder="Search…"
-                      classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                      }}
-                      inputProps={{ "aria-label": "search" }}
-                    />
-                  </div>
-                  <Typography>Menu</Typography>
-                </Grid>
-              </Grid>
+              )}
             </Box>
           </Toolbar>
         </Container>

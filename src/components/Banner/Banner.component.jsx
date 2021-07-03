@@ -4,15 +4,17 @@ import requests from "../../requests";
 import { makeStyles } from "@material-ui/styles";
 import { Container, Grid } from "@material-ui/core";
 import BannerCard from "./../BannerCard/BannerCard.component";
+import Slider from "react-slick";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
     height: "100vh",
+    marginBottom: 10,
   },
   cardContainer: {
     position: "absolute",
     width: "100%",
-    bottom: 100,
+    bottom: 50,
   },
 }));
 
@@ -28,6 +30,33 @@ function Banner() {
     fetchData();
   }, []);
 
+  const settings = {
+    dots: false,
+    infinite: movies.length > 3 ? true : false,
+    autoplay: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <main
@@ -41,15 +70,13 @@ function Banner() {
       >
         <main className={classes.cardContainer}>
           <Container>
-            <Grid container spacing={3}>
+            <Slider {...settings}>
               {movies.length
                 ? movies.map((movie, idx) => (
-                    <Grid key={movie.id} item xs={4}>
-                      <BannerCard movie={movie} />
-                    </Grid>
+                    <BannerCard key={movie.id} movie={movie} />
                   ))
                 : null}
-            </Grid>
+            </Slider>
           </Container>
         </main>
       </main>

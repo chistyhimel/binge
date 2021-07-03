@@ -1,11 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 import {
   Container,
   Grid,
   Typography,
   Box,
   IconButton,
+  useMediaQuery,
 } from "@material-ui/core";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import YouTubeIcon from "@material-ui/icons/YouTube";
@@ -28,22 +29,30 @@ const useStyles = makeStyles((theme) => ({
 
 function Footer() {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <>
       <footer className={classes.footerContainer}>
         <Container>
-          <Grid container alignItems="center" justify="center" spacing={10}>
-            <Grid item xs={3}>
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            flexWrap="wrap"
+          >
+            <Box order={matches ? 1 : 1}>
               <Typography variant="h2" className={classes.logo}>
                 Binge
               </Typography>
-            </Grid>
-            <Grid item xs={6}>
+            </Box>
+
+            <Box order={matches ? 3 : 2} width={matches ? "100vw" : "auto"}>
               <Box
                 display="flex"
-                alignItems="center"
                 justifyContent="space-between"
+                flexDirection={matches ? "column" : "row"}
                 pb={3}
               >
                 <Typography>Terms of Use</Typography>
@@ -54,25 +63,27 @@ function Footer() {
               <Typography align="center" gutterBottom>
                 © 2021 Red Dot Digital Limited.
               </Typography>
-            </Grid>
-            <Grid item xs={3}>
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <IconButton className={classes.iconWrapper}>
-                  <YouTubeIcon />
-                </IconButton>
-                <IconButton className={classes.iconWrapper}>
-                  <TwitterIcon />
-                </IconButton>
-                <IconButton className={classes.iconWrapper}>
-                  <InstagramIcon />
-                </IconButton>
-              </Box>
-            </Grid>
-          </Grid>
+            </Box>
+
+            <Box
+              order={matches ? 2 : 3}
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+              width={200}
+              paddingY={3}
+            >
+              <IconButton className={classes.iconWrapper}>
+                <YouTubeIcon />
+              </IconButton>
+              <IconButton className={classes.iconWrapper}>
+                <TwitterIcon />
+              </IconButton>
+              <IconButton className={classes.iconWrapper}>
+                <InstagramIcon />
+              </IconButton>
+            </Box>
+          </Box>
         </Container>
       </footer>
     </>

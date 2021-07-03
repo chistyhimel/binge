@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../axios";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import {
   Container,
@@ -10,11 +8,12 @@ import {
   Card,
   CardMedia,
   IconButton,
+  useMediaQuery,
 } from "@material-ui/core";
 import { useRef } from "react";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles, useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +51,8 @@ function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
   const sliderRef = useRef();
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("xs"));
 
   useEffect(() => {
     async function fetchData() {
@@ -105,15 +106,19 @@ function Row({ title, fetchUrl, isLargeRow }) {
           alignItems="center"
           paddingY={1}
         >
-          <Typography style={{ color: "#FFF" }} variant="h5">
+          <Typography
+            style={{ color: "#FFF" }}
+            variant={matches ? "subtitle2" : "h5"}
+            noWrap
+          >
             {title}
           </Typography>
           <div>
             <IconButton className={classes.arrowButton} onClick={gotoPrev}>
-              <ArrowBackIcon />
+              <ArrowBackIcon fontSize={matches ? "small" : "default"} />
             </IconButton>
             <IconButton className={classes.arrowButton} onClick={gotoNext}>
-              <ArrowForwardIcon />
+              <ArrowForwardIcon fontSize={matches ? "small" : "default"} />
             </IconButton>
           </div>
         </Box>
