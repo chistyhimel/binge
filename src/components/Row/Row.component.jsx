@@ -28,12 +28,14 @@ const useStyles = makeStyles((theme) => ({
   },
   cardMedia: {
     borderRadius: 10,
-    width: "100%",
     objectFit: "cover",
     transition: "transform 0.5s ease-in-out",
-    "&:hover": {},
+    height: "180px",
+    width: "180px",
+    border: "4px solid #97979724",
+    "&:hover": { border: "4px solid #e50914" },
   },
-  sliderWrapper: {},
+  sliderWrapper: { overflow: "visible" },
   buttonsWrapper: {
     color: "#FFFF",
   },
@@ -70,17 +72,26 @@ function Row({ title, fetchUrl, isLargeRow }) {
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
+    // variableWidth: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: true,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 3,
+        },
+      },
+      {
+        breakpoint: 560,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -96,6 +107,8 @@ function Row({ title, fetchUrl, isLargeRow }) {
   const gotoPrev = () => {
     sliderRef.current.slickPrev();
   };
+
+  console.log(isLargeRow);
 
   return (
     <>

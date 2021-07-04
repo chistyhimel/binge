@@ -21,7 +21,13 @@ code {
 
 .slick-slide > div {
   margin: 0 15px;
+  overflow: visible !important;
 }
 .slick-slider {
-  margin: 0 -12px;
+  margin: 0 -15px;
+}
+.slick-list {
+  /* height: 250px !important;
+  margin: 20px 0 !important; */
+  z-index: 1;
 }

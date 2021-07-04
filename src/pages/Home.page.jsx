@@ -14,10 +14,14 @@ function Home() {
         fetchUrl={requests.fetchNetflixOrginals}
       />
       <Row title="NEW RELEASE" fetchUrl={requests.fetchTrending} />
-      <Row title="BINGE ORGINALS" fetchUrl={requests.fetchTopRated} />
       <Row title="POPULAR IN BINGE" fetchUrl={requests.fetchActionMovies} />
-      <Row title="COMEDY MOVIES" fetchUrl={requests.fetchComedyMovies} />
       <Row title="HORROR MOVIES" fetchUrl={requests.fetchHorrorMovies} />
+      <Row
+        title="BINGE ORGINALS"
+        isLargeRow
+        fetchUrl={requests.fetchTopRated}
+      />
+      <Row title="COMEDY MOVIES" fetchUrl={requests.fetchComedyMovies} />
       <Row title="ROMANCE MOVIES" fetchUrl={requests.fetchRomanceMovies} />
       <Row title="DOCUMENTARIES" fetchUrl={requests.fetchDocumentaries} />
       <Footer />
