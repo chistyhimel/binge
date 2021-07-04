@@ -36,12 +36,13 @@ const useStyles = makeStyles((theme) => ({
   },
   cardMedia: {
     borderRadius: 10,
+    margin: 10,
     width: 170,
     height: 170,
     objectFit: "cover",
     transition: "all 0.5s ease-in-out",
-    border: "4px solid #97979724",
-    "&:hover": { border: "4px solid #e50914" },
+    boxShadow: "0 0 0 4px #c2c2c23b",
+    "&:hover": { boxShadow: "0 0 10px 3px #e50914" },
     "@media (max-width:1250px)": {
       width: 165,
       height: 165,
@@ -83,9 +84,13 @@ const useStyles = makeStyles((theme) => ({
     height: 380,
     width: 380,
     borderRadius: 8,
-    border: "4px solid #97979724",
+    margin: 10,
+
+    boxShadow: "0 0 0 4px #c2c2c23b",
     transition: "all 0.5s ease-in-out",
-    "&:hover": { border: "4px solid #e50914" },
+    "&:hover": {
+      boxShadow: "0 0 10px 3px #e50914",
+    },
     "@media (max-width:1250px)": {
       height: 320,
       width: 320,
