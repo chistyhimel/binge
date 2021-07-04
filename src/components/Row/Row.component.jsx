@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     background: "transparent",
     padding: "30px 0",
-
+    // width: 250,
+    // height: 250,
     "&:hover": {},
   },
   cardMedia: {
@@ -125,32 +126,32 @@ function Row({ title, fetchUrl, isLargeRow }) {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5,
+          slidesToShow: isLargeRow ? 3 : 5,
+          slidesToScroll: 1,
           infinite: true,
         },
       },
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToShow: isLargeRow ? 2 : 4,
+          slidesToScroll: 1,
           infinite: true,
         },
       },
       {
         breakpoint: 700,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: isLargeRow ? 2 : 3,
+          slidesToScroll: 1,
           initialSlide: 3,
         },
       },
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: isLargeRow ? 1 : 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
@@ -163,9 +164,6 @@ function Row({ title, fetchUrl, isLargeRow }) {
   const gotoPrev = () => {
     sliderRef.current.slickPrev();
   };
-
-  var elmnt = document.getElementsByClassName("MuiCardMedia-img");
-  console.log(theme.breakpoints.value);
 
   return (
     <>
@@ -216,7 +214,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
                     <CardMedia
                       component="img"
                       alt={movie.name}
-                      style={{ height: 400 }}
+                      style={{ height: 350 }}
                       image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                       title={movie.name}
                     />
