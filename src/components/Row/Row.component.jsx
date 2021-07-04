@@ -8,11 +8,13 @@ import {
   Card,
   CardMedia,
   IconButton,
+  CardActions,
   useMediaQuery,
 } from "@material-ui/core";
 import { useRef } from "react";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import TimerIcon from "@material-ui/icons/Timer";
 import { makeStyles, useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       transform: "scale3d(1.2, 1.2, 1)",
     },
+  },
+  rootLg: {
+    cursor: "pointer",
+    background: "transparent",
+    padding: "30px 0",
+
+    "&:hover": {},
   },
   cardMedia: {
     borderRadius: 10,
@@ -107,10 +116,10 @@ function Row({ title, fetchUrl, isLargeRow }) {
     infinite: movies.length > 6 ? true : false,
     autoplay: false,
     speed: 500,
-    slidesToShow: 6,
+    slidesToShow: isLargeRow ? 3 : 6,
     slidesToScroll: 1,
-    variableWidth: true,
-    adaptiveHeight: true,
+    variableWidth: isLargeRow ? false : true,
+    adaptiveHeight: isLargeRow ? false : true,
 
     responsive: [
       {
@@ -185,7 +194,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
         </Box>
         <main className={classes.sliderWrapper}>
           <Slider {...settings} ref={sliderRef}>
-            {movies.length
+            {movies.length && !isLargeRow
               ? movies.map((movie, idx) => (
                   <Card elevation={0} className={classes.root} key={movie.id}>
                     <CardMedia
@@ -197,7 +206,61 @@ function Row({ title, fetchUrl, isLargeRow }) {
                     />
                   </Card>
                 ))
-              : null}
+              : movies.map((movie, idx) => (
+                  <Card
+                    elevation={0}
+                    key={movie.id}
+                    className={classes.rootLg}
+                    style={{ background: "transparent" }}
+                  >
+                    <CardMedia
+                      component="img"
+                      alt={movie.name}
+                      style={{ height: 400 }}
+                      image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                      title={movie.name}
+                    />
+                    <Box p={2}>
+                      <Typography
+                        style={{
+                          color: "#c7c7c7",
+                          textTransform: "uppercase",
+                          fontWeight: 600,
+                        }}
+                        variant="h4"
+                        noWrap
+                      >
+                        {movie.title}
+                      </Typography>
+                      <Typography
+                        style={{
+                          color: "#666666",
+                          fontWeight: 600,
+                        }}
+                        variant="subtitle2"
+                        noWrap
+                        gutterBottom
+                      >
+                        Thriller, Action
+                      </Typography>
+                      <Typography
+                        style={{
+                          color: "#666666",
+                          fontWeight: 600,
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                        variant="subtitle2"
+                        noWrap
+                      >
+                        <TimerIcon
+                          style={{ paddingRight: 5, color: "#E50914" }}
+                        />{" "}
+                        Thriller, Action
+                      </Typography>
+                    </Box>
+                  </Card>
+                ))}
           </Slider>
         </main>
       </Container>
