@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardMedia: {
-    borderRadius: 10,
+    borderRadius: 6,
     objectFit: "cover",
     transition: "transform 0.5s ease-in-out",
     height: "180px",
