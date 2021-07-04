@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
     transition: "transform 0.5s ease-in-out",
     height: "180px",
     width: "180px",
-    border: "4px solid #97979724",
-    "&:hover": { border: "4px solid #e50914" },
+    border: "6px solid #97979724",
+    "&:hover": { border: "6px solid #e50914" },
   },
   sliderWrapper: { overflow: "visible" },
   buttonsWrapper: {
