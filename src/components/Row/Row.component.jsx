@@ -32,8 +32,6 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     background: "transparent",
     padding: "30px 0",
-    // width: 250,
-    // height: 250,
     "&:hover": {},
   },
   cardMedia: {
@@ -81,6 +79,34 @@ const useStyles = makeStyles((theme) => ({
       height: 120,
     },
   },
+  cardMediaLg: {
+    height: 380,
+    width: 380,
+    borderRadius: 8,
+    border: "4px solid #97979724",
+    transition: "all 0.5s ease-in-out",
+    "&:hover": { border: "4px solid #e50914" },
+    "@media (max-width:1250px)": {
+      height: 320,
+      width: 320,
+    },
+    "@media (max-width:1000px)": {
+      height: 280,
+      width: 280,
+    },
+    "@media (max-width:600px)": {
+      height: 230,
+      width: 230,
+    },
+  },
+  cardTextLg: {
+    "@media (max-width:1100px)": {
+      fontSize: "1.5rem",
+    },
+    "@media (max-width:600px)": {
+      fontSize: "1.2rem",
+    },
+  },
   sliderWrapper: { overflow: "hidden" },
   buttonsWrapper: {
     color: "#FFFF",
@@ -105,7 +131,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      setMovies(request.data.results.slice(0, 10));
+      setMovies(request.data.results.slice(0, 7));
       return request;
     }
     fetchData();
@@ -119,8 +145,8 @@ function Row({ title, fetchUrl, isLargeRow }) {
     speed: 500,
     slidesToShow: isLargeRow ? 3 : 6,
     slidesToScroll: 1,
-    variableWidth: isLargeRow ? false : true,
-    adaptiveHeight: isLargeRow ? false : true,
+    variableWidth: true,
+    adaptiveHeight: true,
 
     responsive: [
       {
@@ -214,9 +240,9 @@ function Row({ title, fetchUrl, isLargeRow }) {
                     <CardMedia
                       component="img"
                       alt={movie.name}
-                      style={{ height: 350 }}
                       image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                       title={movie.name}
+                      className={classes.cardMediaLg}
                     />
                     <Box p={2}>
                       <Typography
@@ -226,6 +252,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
                           fontWeight: 600,
                         }}
                         variant="h4"
+                        className={classes.cardTextLg}
                         noWrap
                       >
                         {movie.title}
