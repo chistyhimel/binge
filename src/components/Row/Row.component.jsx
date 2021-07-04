@@ -27,15 +27,51 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardMedia: {
-    borderRadius: 6,
+    borderRadius: 10,
+    width: 170,
+    height: 170,
     objectFit: "cover",
-    transition: "transform 0.5s ease-in-out",
-    height: "180px",
-    width: "180px",
-    border: "6px solid #97979724",
-    "&:hover": { border: "6px solid #e50914" },
+    transition: "all 0.5s ease-in-out",
+    border: "4px solid #97979724",
+    "&:hover": { border: "4px solid #e50914" },
+    "@media (max-width:1250px)": {
+      width: 165,
+      height: 165,
+    },
+    "@media (max-width:1150px)": {
+      width: 150,
+      height: 150,
+    },
+    "@media (max-width:1100px)": {
+      width: 140,
+      height: 140,
+    },
+    "@media (max-width:1024px)": {
+      width: 155,
+      height: 155,
+    },
+    "@media (max-width:960px)": {
+      width: 150,
+      height: 150,
+    },
+    "@media (max-width:700px)": {
+      width: 160,
+      height: 160,
+    },
+    "@media (max-width:600px)": {
+      width: 140,
+      height: 140,
+    },
+    "@media (max-width:500px)": {
+      width: 130,
+      height: 130,
+    },
+    "@media (max-width:380px)": {
+      width: 120,
+      height: 120,
+    },
   },
-  sliderWrapper: { overflow: "visible" },
+  sliderWrapper: { overflow: "hidden" },
   buttonsWrapper: {
     color: "#FFFF",
   },
@@ -66,16 +102,27 @@ function Row({ title, fetchUrl, isLargeRow }) {
   }, [fetchUrl]);
 
   const settings = {
+    className: "himel",
     dots: false,
     infinite: movies.length > 6 ? true : false,
     autoplay: false,
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
-    // variableWidth: true,
+    variableWidth: true,
+    adaptiveHeight: true,
+
     responsive: [
       {
         breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 900,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
@@ -83,7 +130,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 700,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
@@ -91,7 +138,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
         },
       },
       {
-        breakpoint: 560,
+        breakpoint: 500,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -108,7 +155,8 @@ function Row({ title, fetchUrl, isLargeRow }) {
     sliderRef.current.slickPrev();
   };
 
-  console.log(isLargeRow);
+  var elmnt = document.getElementsByClassName("MuiCardMedia-img");
+  console.log(theme.breakpoints.value);
 
   return (
     <>
