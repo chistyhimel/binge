@@ -2,8 +2,11 @@ import { ThemeProvider } from "@material-ui/styles";
 // import Navbar from "./components/Navbar";
 import Home from "./pages/Home.page";
 import theme from "./theme";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.component";
+import Login from "./pages/Login.page";
+import NotFound from "./pages/NotFound.page";
+import Details from "./pages/Details.page";
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/details/:id" component={Details} />
+            <Route exact path="*" component={NotFound} />
           </Switch>
         </Router>
       </ThemeProvider>

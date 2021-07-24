@@ -10,7 +10,8 @@ import {
 } from "@material-ui/core";
 
 import { makeStyles, useTheme } from "@material-ui/styles";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar.component";
 import Searchbar from "./../Searchbar/Searchbar.component";
 
@@ -36,9 +37,22 @@ function Navbar() {
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   // const matches = useMediaQuery("(max-width:600px)");
 
-  console.log(theme);
+  const { pathname } = useLocation();
+  const [showNavbar, setShowNavbar] = useState(true);
 
-  return (
+  useEffect(() => {
+    let pathList = ["/"];
+    let checkPath = pathList.includes(pathname);
+    if (!checkPath) {
+      setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
+    }
+
+    return () => {};
+  }, [pathname]);
+
+  return showNavbar ? (
     <>
       <AppBar position="fixed" color={trigger ? "primary" : "transparent"}>
         <Container>
@@ -68,7 +82,7 @@ function Navbar() {
         </Container>
       </AppBar>
     </>
-  );
+  ) : null;
 }
 
 export default Navbar;

@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <Banner />
-      <Row title="TRENDING" fetchUrl={requests.fetchNetflixOrginals} />
+      {/* <Row title="TRENDING" fetchUrl={requests.fetchNetflixOrginals} /> */}
       <Row title="NEW RELEASE" fetchUrl={requests.fetchTrending} />
       <Row title="POPULAR IN BINGE" fetchUrl={requests.fetchTopRated} />
       <Row title="HORROR MOVIES" fetchUrl={requests.fetchHorrorMovies} />

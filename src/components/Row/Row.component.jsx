@@ -5,117 +5,18 @@ import {
   Container,
   Box,
   Typography,
-  Card,
-  CardMedia,
   IconButton,
-  CardActions,
   useMediaQuery,
 } from "@material-ui/core";
 import { useRef } from "react";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import TimerIcon from "@material-ui/icons/Timer";
 import { makeStyles, useTheme } from "@material-ui/styles";
+import CardPrimary from "../CardPrimary/CardPrimary.component";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    cursor: "pointer",
-    background: "transparent",
-    padding: "30px 0",
+  sliderWrapper: { overflow: "hidden", height: "auto" },
 
-    transition: "transform 0.5s ease-in-out",
-    "&:hover": {
-      transform: "scale3d(1.2, 1.2, 1)",
-    },
-  },
-  rootLg: {
-    cursor: "pointer",
-    background: "transparent",
-    padding: "30px 0",
-    "&:hover": {},
-  },
-  cardMedia: {
-    borderRadius: 10,
-    margin: 10,
-    width: 170,
-    height: 170,
-    objectFit: "cover",
-    transition: "all 0.5s ease-in-out",
-    boxShadow: "0 0 0 4px #c2c2c23b",
-    "&:hover": { boxShadow: "0 0 10px 3px #e50914" },
-    "@media (max-width:1250px)": {
-      width: 165,
-      height: 165,
-    },
-    "@media (max-width:1150px)": {
-      width: 150,
-      height: 150,
-    },
-    "@media (max-width:1100px)": {
-      width: 140,
-      height: 140,
-    },
-    "@media (max-width:1024px)": {
-      width: 155,
-      height: 155,
-    },
-    "@media (max-width:960px)": {
-      width: 150,
-      height: 150,
-    },
-    "@media (max-width:700px)": {
-      width: 160,
-      height: 160,
-    },
-    "@media (max-width:600px)": {
-      width: 140,
-      height: 140,
-    },
-    "@media (max-width:500px)": {
-      width: 130,
-      height: 130,
-    },
-    "@media (max-width:380px)": {
-      width: 120,
-      height: 120,
-    },
-  },
-  cardMediaLg: {
-    height: 380,
-    width: 380,
-    borderRadius: 8,
-    margin: 10,
-
-    boxShadow: "0 0 0 4px #c2c2c23b",
-    transition: "all 0.5s ease-in-out",
-    "&:hover": {
-      boxShadow: "0 0 10px 3px #e50914",
-    },
-    "@media (max-width:1250px)": {
-      height: 320,
-      width: 320,
-    },
-    "@media (max-width:1000px)": {
-      height: 280,
-      width: 280,
-    },
-    "@media (max-width:600px)": {
-      height: 230,
-      width: 230,
-    },
-  },
-  cardTextLg: {
-    "@media (max-width:1100px)": {
-      fontSize: "1.5rem",
-    },
-    "@media (max-width:600px)": {
-      fontSize: "1.2rem",
-    },
-  },
-  sliderWrapper: { overflow: "hidden" },
-  buttonsWrapper: {
-    color: "#FFFF",
-  },
   arrowButton: {
     border: "2px solid #E50914",
     borderRadius: 10,
@@ -223,74 +124,9 @@ function Row({ title, fetchUrl, isLargeRow }) {
         </Box>
         <main className={classes.sliderWrapper}>
           <Slider {...settings} ref={sliderRef}>
-            {movies.length && !isLargeRow
-              ? movies.map((movie, idx) => (
-                  <Card elevation={0} className={classes.root} key={movie.id}>
-                    <CardMedia
-                      component="img"
-                      alt={movie.name}
-                      className={classes.cardMedia}
-                      image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                      title={movie.name}
-                    />
-                  </Card>
-                ))
-              : movies.map((movie, idx) => (
-                  <Card
-                    elevation={0}
-                    key={movie.id}
-                    className={classes.rootLg}
-                    style={{ background: "transparent" }}
-                  >
-                    <CardMedia
-                      component="img"
-                      alt={movie.name}
-                      image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                      title={movie.name}
-                      className={classes.cardMediaLg}
-                    />
-                    <Box p={2}>
-                      <Typography
-                        style={{
-                          color: "#c7c7c7",
-                          textTransform: "uppercase",
-                          fontWeight: 600,
-                        }}
-                        variant="h4"
-                        className={classes.cardTextLg}
-                        noWrap
-                      >
-                        {movie.title}
-                      </Typography>
-                      <Typography
-                        style={{
-                          color: "#666666",
-                          fontWeight: 600,
-                        }}
-                        variant="subtitle2"
-                        noWrap
-                        gutterBottom
-                      >
-                        Thriller, Action
-                      </Typography>
-                      <Typography
-                        style={{
-                          color: "#666666",
-                          fontWeight: 600,
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                        variant="subtitle2"
-                        noWrap
-                      >
-                        <TimerIcon
-                          style={{ paddingRight: 5, color: "#E50914" }}
-                        />{" "}
-                        Thriller, Action
-                      </Typography>
-                    </Box>
-                  </Card>
-                ))}
+            {movies.length
+              ? movies.map((movie, idx) => <CardPrimary movie={movie} />)
+              : null}
           </Slider>
         </main>
       </Container>
