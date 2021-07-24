@@ -64,7 +64,7 @@ function Banner() {
         className={classes.banner}
         style={{
           backgroundSize: "cover",
-          backgroundImage: `url(https://image.tmdb.org/t/p/original/${movies[0]?.backdrop_path})`,
+          backgroundImage: `url(https://image.tmdb.org/t/p/original/${movies[1]?.backdrop_path})`,
           backgroundPosition: "top center",
           // objectFit: "contain",
         }}
