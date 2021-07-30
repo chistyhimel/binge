@@ -5,12 +5,10 @@ import { CardPrimaryWrapper } from "./CardPrimary.style";
 import { useHistory } from "react-router-dom";
 
 function CardPrimary({ movie }) {
-  console.log(movie);
   const history = useHistory();
   return movie ? (
     <>
-      <CardPrimaryWrapper /*onClick={() => history.push(`/details/${movie.id}`)}*/
-      >
+      <CardPrimaryWrapper onClick={() => history.push(`/details/${movie.id}`)}>
         <Box
           className="card__header"
           display="flex"

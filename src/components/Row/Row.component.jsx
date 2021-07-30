@@ -125,7 +125,9 @@ function Row({ title, fetchUrl, isLargeRow }) {
         <main className={classes.sliderWrapper}>
           <Slider {...settings} ref={sliderRef}>
             {movies.length
-              ? movies.map((movie, idx) => <CardPrimary movie={movie} />)
+              ? movies.map((movie, idx) => (
+                  <CardPrimary key={movie.id} movie={movie} />
+                ))
               : null}
           </Slider>
         </main>

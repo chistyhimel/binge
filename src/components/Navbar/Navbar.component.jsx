@@ -41,9 +41,9 @@ function Navbar() {
   const [showNavbar, setShowNavbar] = useState(true);
 
   useEffect(() => {
-    let pathList = ["/"];
+    let pathList = ["/login", "*"];
     let checkPath = pathList.includes(pathname);
-    if (!checkPath) {
+    if (checkPath) {
       setShowNavbar(false);
     } else {
       setShowNavbar(true);
@@ -51,10 +51,15 @@ function Navbar() {
 
     return () => {};
   }, [pathname]);
-
+  console.log(pathname);
   return showNavbar ? (
     <>
-      <AppBar position="fixed" color={trigger ? "primary" : "transparent"}>
+      <AppBar
+        position="fixed"
+        style={{
+          backgroundColor: `${trigger ? "#131313" : "#0000003d"}`,
+        }}
+      >
         <Container>
           <Toolbar disableGutters>
             <Typography variant="h4" color="secondary" className={classes.logo}>
