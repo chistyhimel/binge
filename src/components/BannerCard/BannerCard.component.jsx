@@ -5,6 +5,7 @@ import {
   Card,
   CardMedia,
   Box,
+  useMediaQuery,
 } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
@@ -15,21 +16,46 @@ const useStyles = makeStyles((theme) => ({
     background: "#000000e2",
     cursor: "pointer",
     borderRadius: 10,
-    border: "4px solid transparent",
+    border: "3px solid transparent",
     transition: "all 0.2s",
     "&:hover": {
-      border: "4px solid #E50914",
+      border: "3px solid rgba(154, 0, 0, 0.8)",
     },
   },
   cardTitle: {
     color: "#e4e4e4",
     textTransform: "uppercase",
     fontWeight: 600,
+
+    "@media(max-width:1150px)": {
+      fontSize: "16px",
+    },
+    "@media(max-width:600px)": {
+      fontSize: "14px",
+    },
+  },
+  subText: {
+    "@media(max-width:1150px)": {
+      fontSize: "14px",
+    },
+    "@media(max-width:600px)": {
+      fontSize: "12px",
+    },
+  },
+  icon: {
+    "@media(max-width:1150px)": {
+      fontSize: "20px",
+    },
+    "@media(max-width:600px)": {
+      fontSize: "16px",
+    },
   },
 }));
 
 function BannerCard({ movie }) {
   const classes = useStyles();
+  const matchesMd = useMediaQuery("(max-width:1150px)");
+  const matchesSm = useMediaQuery("(max-width:600px)");
   const { backdrop_path, poster_path, vote_average, name } = movie;
   console.log(movie);
 
@@ -42,7 +68,7 @@ function BannerCard({ movie }) {
               <CardMedia
                 component="img"
                 alt={name}
-                height="100"
+                height={matchesMd ? 80 : 100}
                 image={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                 title={name}
               />
@@ -56,7 +82,11 @@ function BannerCard({ movie }) {
               >
                 {name}
               </Typography>
-              <Typography style={{ color: "#646464" }} color="textSecondary">
+              <Typography
+                style={{ color: "#646464" }}
+                color="textSecondary"
+                className={classes.subText}
+              >
                 Action / Thriller
               </Typography>
 
@@ -65,10 +95,11 @@ function BannerCard({ movie }) {
                   style={{ color: "#cecece", paddingRight: "5px" }}
                   color="textSecondary"
                   gutterBottom
+                  className={classes.subText}
                 >
                   {vote_average}
                 </Typography>
-                <StarIcon color="secondary" />
+                <StarIcon color="secondary" className={classes.icon} />
               </Box>
             </Grid>
           </Grid>

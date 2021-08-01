@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "../../axios";
 import requests from "../../requests";
 import { makeStyles } from "@material-ui/styles";
@@ -14,7 +14,10 @@ const useStyles = makeStyles((theme) => ({
   cardContainer: {
     position: "absolute",
     width: "100%",
-    bottom: 50,
+    bottom: 0,
+    padding: "50px 0",
+    backgroundImage:
+      "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.64) 39%, #000000 74%)",
   },
 }));
 
@@ -22,7 +25,7 @@ function Banner() {
   const [movies, setMovies] = useState([]);
   const classes = useStyles();
 
-  useState(() => {
+  useEffect(() => {
     async function fetchData() {
       const request = await axios.get(requests.fetchNetflixOrginals);
       setMovies(request.data.results.slice(0, 3));

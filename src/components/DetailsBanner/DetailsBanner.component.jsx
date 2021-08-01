@@ -11,6 +11,7 @@ import {
 import TimerIcon from "@material-ui/icons/Timer";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import { useHistory, useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
@@ -68,6 +69,11 @@ function DetailsBanner() {
   const classes = useStyles();
   const matchesMd = useMediaQuery("(max-width:800px)");
   const matchesSm = useMediaQuery("(max-width:600px)");
+  const history = useHistory();
+  const { id } = useParams();
+
+  console.log(id);
+
   return (
     <>
       <header className={classes.banner}>
@@ -151,6 +157,7 @@ function DetailsBanner() {
                   size="large"
                   style={{ background: "#850000" }}
                   className={classes.button}
+                  onClick={() => history.push(`/playing/${id}`)}
                 >
                   Watch Now
                 </Button>
