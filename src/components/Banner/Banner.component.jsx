@@ -70,17 +70,17 @@ function Banner({ data, tv }) {
           // objectFit: "contain",
         }}
       >
-        {tv ? (
-          <Box
-            height={"75vh"}
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            // alignItems="center"
-            marginTop="auto"
-          >
-            <Typography variant="h2">{data[0].banner.name}</Typography>
-            <Typography variant="h5">{data[0].banner.subTitle}</Typography>
+        <Box
+          height={"75vh"}
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          // alignItems="center"
+          marginTop="auto"
+        >
+          <Typography variant="h2">{tv && data[0].banner.name}</Typography>
+          <Typography variant="h5">{tv && data[0].banner.subTitle}</Typography>
+          {tv && (
             <Button
               variant="contained"
               size="large"
@@ -96,8 +96,8 @@ function Banner({ data, tv }) {
             >
               Watch Now
             </Button>
-          </Box>
-        ) : null}
+          )}
+        </Box>
 
         <main className={classes.cardContainer}>
           <Container>
