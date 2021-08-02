@@ -8,6 +8,7 @@ import Login from "./pages/Login.page";
 import NotFound from "./pages/NotFound.page";
 import Details from "./pages/Details.page";
 import ContentPlay from "./pages/ContentPlay.page";
+import WatchTv from "./pages/WatchTv.page";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/details/:id" component={Details} />
             <Route exact path="/playing/:contentId" component={ContentPlay} />
+            <Route exact path="/watch-tv" component={WatchTv} />
             <Route exact path="*" component={NotFound} />
           </Switch>
         </Router>

@@ -5,12 +5,18 @@ import { makeStyles } from "@material-ui/styles";
 import BannerCard from "./../components/BannerCard/BannerCard.component";
 import requests from "./../requests";
 import axios from "../axios";
+import Row from "./../components/Row/Row.component";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    marginTop: "70px",
+    margin: "70px 0px 50px 0px",
     padding: "50px 0",
     background: "#000000",
+
+    "@media(max-width:960px)": {
+      margin: "50px 0px 20px 0px",
+      padding: "20px 0",
+    },
   },
   relatedContentBar: {
     height: 438,
@@ -75,6 +81,9 @@ function ContentPlay() {
           </Grid>
         </Container>
       </main>
+      <Row title="TRENDING" fetchUrl={requests.fetchTrending} />
+      <Row title="NEW RELEASE" fetchUrl={requests.fetchTopRated} />
+      <Row title="POPULER ON BINGE" fetchUrl={requests.fetchHorrorMovies} />
     </>
   );
 }

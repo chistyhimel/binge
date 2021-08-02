@@ -2,40 +2,34 @@ import React, { useEffect, useState } from "react";
 import axios from "../../axios";
 import requests from "../../requests";
 import { makeStyles } from "@material-ui/styles";
-import { Container, Grid } from "@material-ui/core";
+import { Box, Button, Container, Grid, Typography } from "@material-ui/core";
 import BannerCard from "./../BannerCard/BannerCard.component";
 import Slider from "react-slick";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
-    height: "100vh",
+    // height: "100vh",
     marginBottom: 10,
   },
   cardContainer: {
-    position: "absolute",
+    // position: "absolute",
+    // bottom: 0,
+    height: "25vh",
     width: "100%",
-    bottom: 0,
-    padding: "50px 0",
+    padding: "0px 0",
     backgroundImage:
       "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.64) 39%, #000000 74%)",
   },
 }));
 
-function Banner() {
-  const [movies, setMovies] = useState([]);
+function Banner({ data, tv }) {
   const classes = useStyles();
 
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(requests.fetchNetflixOrginals);
-      setMovies(request.data.results.slice(0, 3));
-    }
-    fetchData();
-  }, []);
+  // console.log(data[0].banner.image);
 
   const settings = {
     dots: false,
-    infinite: movies.length > 3 ? true : false,
+    infinite: data.length > 3 ? true : false,
     autoplay: false,
     speed: 500,
     slidesToShow: 3,
@@ -67,16 +61,49 @@ function Banner() {
         className={classes.banner}
         style={{
           backgroundSize: "cover",
-          backgroundImage: `url(https://image.tmdb.org/t/p/original/${movies[1]?.backdrop_path})`,
+          backgroundImage: `${
+            tv
+              ? `url(${data[0].banner.image})`
+              : `url(https://image.tmdb.org/t/p/original/${data[1]?.backdrop_path})`
+          }`,
           backgroundPosition: "top center",
           // objectFit: "contain",
         }}
       >
+        {tv ? (
+          <Box
+            height={"75vh"}
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            // alignItems="center"
+            marginTop="auto"
+          >
+            <Typography variant="h2">{data[0].banner.name}</Typography>
+            <Typography variant="h5">{data[0].banner.subTitle}</Typography>
+            <Button
+              variant="contained"
+              size="large"
+              color="secondary"
+              style={{
+                // background: "#850000",
+                height: "60px",
+                width: "180px",
+                color: "#FFFF",
+              }}
+              className={classes.button}
+              // onClick={() => history.push(`/playing/${id}`)}
+            >
+              Watch Now
+            </Button>
+          </Box>
+        ) : null}
+
         <main className={classes.cardContainer}>
           <Container>
             <Slider {...settings}>
-              {movies.length
-                ? movies.map((movie, idx) => (
+              {data.length
+                ? data.map((movie, idx) => (
                     <BannerCard key={movie.id} movie={movie} />
                   ))
                 : null}

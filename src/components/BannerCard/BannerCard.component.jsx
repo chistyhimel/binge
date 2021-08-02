@@ -56,8 +56,8 @@ function BannerCard({ movie }) {
   const classes = useStyles();
   const matchesMd = useMediaQuery("(max-width:1150px)");
   const matchesSm = useMediaQuery("(max-width:600px)");
+  const matchesXm = useMediaQuery("(max-width:400px)");
   const { backdrop_path, poster_path, vote_average, name } = movie;
-  console.log(movie);
 
   return movie ? (
     <>
@@ -68,7 +68,7 @@ function BannerCard({ movie }) {
               <CardMedia
                 component="img"
                 alt={name}
-                height={matchesMd ? 80 : 100}
+                height={matchesXm ? 50 : matchesMd ? 80 : 100}
                 image={`https://image.tmdb.org/t/p/original${backdrop_path}`}
                 title={name}
               />
