@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Row({ title, fetchUrl, isLargeRow }) {
+function Row({ title, fetchUrl, isLargeRow, tvData, tv }) {
   const [movies, setMovies] = useState([]);
   const sliderRef = useRef();
   const classes = useStyles();
@@ -35,12 +35,14 @@ function Row({ title, fetchUrl, isLargeRow }) {
   const matches = useMediaQuery(theme.breakpoints.down("xs"));
 
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(fetchUrl);
-      setMovies(request.data.results.slice(0, 7));
-      return request;
+    if (fetchUrl) {
+      async function fetchData() {
+        const request = await axios.get(fetchUrl);
+        setMovies(request.data.results.slice(0, 7));
+        return request;
+      }
+      fetchData();
     }
-    fetchData();
   }, [fetchUrl]);
 
   const settings = {
@@ -124,7 +126,11 @@ function Row({ title, fetchUrl, isLargeRow }) {
         </Box>
         <main className={classes.sliderWrapper}>
           <Slider {...settings} ref={sliderRef}>
-            {movies.length
+            {tv
+              ? tvData.map((movie, idx) => (
+                  <CardPrimary key={movie.id} movie={movie} tv />
+                ))
+              : movies.length
               ? movies.map((movie, idx) => (
                   <CardPrimary key={movie.id} movie={movie} />
                 ))

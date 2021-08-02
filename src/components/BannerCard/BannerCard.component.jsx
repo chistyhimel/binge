@@ -52,14 +52,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function BannerCard({ movie }) {
+function BannerCard({ data, tv }) {
   const classes = useStyles();
   const matchesMd = useMediaQuery("(max-width:1150px)");
   const matchesSm = useMediaQuery("(max-width:600px)");
   const matchesXm = useMediaQuery("(max-width:400px)");
-  const { backdrop_path, poster_path, vote_average, name } = movie;
+  const { backdrop_path, poster_path, vote_average, name, subTitle } = data;
+  console.log(data);
 
-  return movie ? (
+  return data ? (
     <>
       <Card className={classes.root}>
         <CardContent>
@@ -69,7 +70,11 @@ function BannerCard({ movie }) {
                 component="img"
                 alt={name}
                 height={matchesXm ? 50 : matchesMd ? 80 : 100}
-                image={`https://image.tmdb.org/t/p/original${backdrop_path}`}
+                image={
+                  tv
+                    ? backdrop_path
+                    : `https://image.tmdb.org/t/p/original${backdrop_path}`
+                }
                 title={name}
               />
             </Grid>
@@ -87,20 +92,22 @@ function BannerCard({ movie }) {
                 color="textSecondary"
                 className={classes.subText}
               >
-                Action / Thriller
+                {tv ? subTitle : "Action / Thriller"}
               </Typography>
 
-              <Box display="flex">
-                <Typography
-                  style={{ color: "#cecece", paddingRight: "5px" }}
-                  color="textSecondary"
-                  gutterBottom
-                  className={classes.subText}
-                >
-                  {vote_average}
-                </Typography>
-                <StarIcon color="secondary" className={classes.icon} />
-              </Box>
+              {!tv ? (
+                <Box display="flex">
+                  <Typography
+                    style={{ color: "#cecece", paddingRight: "5px" }}
+                    color="textSecondary"
+                    gutterBottom
+                    className={classes.subText}
+                  >
+                    {vote_average}
+                  </Typography>
+                  <StarIcon color="secondary" className={classes.icon} />
+                </Box>
+              ) : null}
             </Grid>
           </Grid>
         </CardContent>
