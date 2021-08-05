@@ -11,9 +11,14 @@ import {
 
 import { makeStyles, useTheme } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar.component";
 import Searchbar from "./../Searchbar/Searchbar.component";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import GenreBar from "./../GenreBar/GenreBar.component";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MenuContent from "./../MenuContent/MenuContent.component";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -26,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
     "& > *": {
       color: "#FFF",
+      cursor: "pointer",
     },
   },
 }));
@@ -39,6 +45,8 @@ function Navbar() {
 
   const { pathname } = useLocation();
   const [showNavbar, setShowNavbar] = useState(true);
+  const [showGenre, setShowGenre] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     let pathList = ["/login", "*"];
@@ -51,18 +59,29 @@ function Navbar() {
 
     return () => {};
   }, [pathname]);
-  console.log(pathname);
+
+  console.log(showGenre);
+
   return showNavbar ? (
     <>
       <AppBar
         position="fixed"
         style={{
-          backgroundColor: `${trigger ? "#131313" : "#0000003d"}`,
+          backgroundColor: `${
+            trigger || showGenre || showMenu ? "#131313" : "#0000003d"
+          }`,
+          zIndex: 1400,
         }}
       >
         <Container>
           <Toolbar disableGutters>
-            <Typography variant="h4" color="secondary" className={classes.logo}>
+            <Typography
+              component={Link}
+              to="/"
+              variant="h4"
+              color="secondary"
+              className={classes.logo}
+            >
               Binge
             </Typography>
             <Box width={matches ? "auto" : "80%"} ml="auto">
@@ -71,21 +90,47 @@ function Navbar() {
               ) : (
                 <Grid container spacing={10}>
                   <Grid item xs={6} className={classes.tabWrapper}>
-                    <Typography>Genre</Typography>
-                    <Typography>Watch TV</Typography>
+                    <Box display="flex" alignItems="center">
+                      <Typography
+                        onClick={() => {
+                          setShowGenre(!showGenre);
+                          setShowMenu(false);
+                        }}
+                      >
+                        Genre
+                      </Typography>
+                      {showGenre ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                    </Box>
+                    <Typography component={Link} to="/watch-tv">
+                      Watch TV
+                    </Typography>
                     <Typography>My List</Typography>
                     <Typography>Device</Typography>
                   </Grid>
                   <Grid item xs={6} className={classes.tabWrapper}>
                     <Searchbar />
-                    <Typography>Menu</Typography>
+                    <NotificationsIcon />
+                    <Box display="flex" alignItems="center">
+                      <Typography
+                        onClick={() => {
+                          setShowGenre(false);
+                          setShowMenu(!showMenu);
+                        }}
+                      >
+                        Menu
+                      </Typography>
+                      {showGenre ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                    </Box>
                   </Grid>
                 </Grid>
               )}
             </Box>
           </Toolbar>
         </Container>
+        {/* {showGenre ? <GenreBar /> : ""} */}
       </AppBar>
+      <GenreBar state={[showGenre, setShowGenre]} />
+      <MenuContent state={[showMenu, setShowMenu]} />
     </>
   ) : null;
 }

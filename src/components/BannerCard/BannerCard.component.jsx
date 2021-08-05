@@ -58,7 +58,6 @@ function BannerCard({ data, tv }) {
   const matchesSm = useMediaQuery("(max-width:600px)");
   const matchesXm = useMediaQuery("(max-width:400px)");
   const { backdrop_path, poster_path, vote_average, name, subTitle } = data;
-  console.log(data);
 
   return data ? (
     <>

@@ -72,7 +72,7 @@ function ContentPlay() {
                 {movies.length
                   ? movies.map((movie, idx) => (
                       <div className={classes.cardWrapper} key={movie.id}>
-                        <BannerCard key={movie.id} movie={movie} />
+                        <BannerCard key={movie.id} data={movie} />
                       </div>
                     ))
                   : null}
