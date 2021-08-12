@@ -10,6 +10,7 @@ import Details from "./pages/Details.page";
 import ContentPlay from "./pages/ContentPlay.page";
 import WatchTv from "./pages/WatchTv.page";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import UserProfile from "./pages/UserProfile.page";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route exact path="/details/:id" component={Details} />
               <Route exact path="/playing/:contentId" component={ContentPlay} />
               <Route exact path="/watch-tv" component={WatchTv} />
+              <Route exact path="/profile" component={UserProfile} />
               <Route exact path="*" component={NotFound} />
             </Switch>
           </ScrollToTop>

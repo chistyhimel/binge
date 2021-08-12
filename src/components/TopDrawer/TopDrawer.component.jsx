@@ -3,11 +3,13 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    marginTop: 100,
+  },
   wrapper: {
     background: "transparent",
     top: 60,
-    overflow: "hidden",
+    // overflow: "hidden",
   },
 }));
 
@@ -19,7 +21,6 @@ function TopDrawer({ children, ...restProps }) {
         {...restProps}
         anchor="top"
         classes={{ root: classes.root, paperAnchorTop: classes.wrapper }}
-        style={{ marginTop: 100 }}
       >
         <Box
           bgcolor={"#131313ea"}

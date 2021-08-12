@@ -1,7 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import TopDrawer from "./../TopDrawer/TopDrawer.component";
-import { Box, Button, Container, Grid, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from "@material-ui/core";
 
 const genres = [
   "ALL GENRE",
@@ -26,12 +33,21 @@ const useStyles = makeStyles((theme) => ({
     background: "#1c1c1c",
     fontWeight: 400,
     color: "#d8d8d8",
+    "@media(max-width:600px)": {
+      fontSize: "10px",
+      height: "50px",
+    },
+    "@media(max-width:400px)": {
+      height: "40px",
+    },
   },
 }));
 
 function GenreBar({ state }) {
   const classes = useStyles();
   const [showGenre, setShowGenre] = state;
+
+  const matchesMd = useMediaQuery("(max-width:960px)");
 
   return (
     <>
@@ -57,7 +73,7 @@ function GenreBar({ state }) {
             <br />
             <Grid container spacing={3}>
               {genres.map((genre, idx) => (
-                <Grid item xs={3}>
+                <Grid item xs={6} sm={4} md={3}>
                   <Button
                     variant="contained"
                     size="large"

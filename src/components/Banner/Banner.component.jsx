@@ -56,7 +56,6 @@ function Banner({ data, tv }) {
   const classes = useStyles();
   const matchesMd = useMediaQuery("(max-width:960px)");
   const matchesSm = useMediaQuery("(max-width:600px)");
-  // console.log(data[0].banner.image);
 
   const settings = {
     dots: false,
@@ -98,7 +97,6 @@ function Banner({ data, tv }) {
               : `url(https://image.tmdb.org/t/p/original/${data[1]?.backdrop_path})`
           }`,
           backgroundPosition: "top center",
-          // objectFit: "contain",
         }}
       >
         <Container>

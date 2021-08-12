@@ -8,6 +8,9 @@ body {
   background: #131313;
   overflow-x: hidden;
 }
+* {
+  box-sizing: border-box;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
