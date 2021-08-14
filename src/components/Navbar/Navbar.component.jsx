@@ -105,7 +105,9 @@ function Navbar() {
                       Watch TV
                     </Typography>
                     <Typography>My List</Typography>
-                    <Typography>Device</Typography>
+                    <Typography component={Link} to="/device">
+                      Device
+                    </Typography>
                   </Grid>
                   <Grid item xs={6} className={classes.tabWrapper}>
                     <Searchbar />
@@ -129,6 +131,7 @@ function Navbar() {
         </Container>
         {/* {showGenre ? <GenreBar /> : ""} */}
       </AppBar>
+
       <GenreBar state={[showGenre, setShowGenre]} />
       <MenuContent state={[showMenu, setShowMenu]} />
     </>
