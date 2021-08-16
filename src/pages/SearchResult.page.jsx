@@ -19,9 +19,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: "#FFFF",
   },
-  row: {
-    overflow: "scroll",
-  },
+  row: {},
 }));
 
 function SearchResult() {
