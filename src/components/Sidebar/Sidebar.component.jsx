@@ -68,7 +68,12 @@ function Sidebar({ drawerState }) {
             <ListItemText className={classes.drawerItem}>My List</ListItemText>
           </ListItem>
           <ListItem divider button>
-            <ListItemText className={classes.drawerItem}>Device</ListItemText>
+            <ListItemText
+              className={classes.drawerItem}
+              onClick={() => handleClick("/device")}
+            >
+              Device
+            </ListItemText>
           </ListItem>
           <ListItem divider button>
             <ListItemText

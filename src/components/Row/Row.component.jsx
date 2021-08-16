@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Row({ title, fetchUrl, isLargeRow, tvData, tv }) {
+function Row({ title = "", fetchUrl, isLargeRow, tvData, tv }) {
   const [movies, setMovies] = useState([]);
   const sliderRef = useRef();
   const classes = useStyles();
