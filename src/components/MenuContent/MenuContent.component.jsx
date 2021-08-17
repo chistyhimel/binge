@@ -8,7 +8,11 @@ import {
 import React from "react";
 import TopDrawer from "./../TopDrawer/TopDrawer.component";
 import { makeStyles } from "@material-ui/styles";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import LogoutAlertModal from "../LogoutAlertModal/LogoutAlertModal.component";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -36,11 +40,34 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "8px",
     },
   },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
 }));
 
 function MenuContent({ state }) {
   const classes = useStyles();
   const [showMenu, setShowMenu] = state;
+  const history = useHistory();
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const hamdleOpenLogoutModal = () => {
+    setOpenModal(true);
+    setShowMenu(false);
+  };
+
+  const handleClick = (path) => {
+    history.push(path);
+    setShowMenu(false);
+  };
 
   const matchesMd = useMediaQuery("(max-width:960px)");
   const matchesSm = useMediaQuery("(max-width:600px)");
@@ -88,11 +115,12 @@ function MenuContent({ state }) {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} style={{ cursor: "pointer" }}>
             <Typography
               align={matchesMd ? "left" : "right"}
               variant={matchesXm ? "subtitle1" : matchesMd ? "h6" : "h5"}
               gutterBottom
+              onClick={() => handleClick("/subscription")}
             >
               SUBSCRIPTION
             </Typography>
@@ -100,6 +128,7 @@ function MenuContent({ state }) {
               align={matchesMd ? "left" : "right"}
               variant={matchesXm ? "subtitle1" : matchesMd ? "h6" : "h5"}
               gutterBottom
+              onClick={() => handleClick("/usage-history")}
             >
               USAGE HISTORY
             </Typography>
@@ -107,6 +136,7 @@ function MenuContent({ state }) {
               align={matchesMd ? "left" : "right"}
               variant={matchesXm ? "subtitle1" : matchesMd ? "h6" : "h5"}
               gutterBottom
+              onClick={() => handleClick("/parental-content")}
             >
               PARENTAL CONTENT
             </Typography>
@@ -114,12 +144,15 @@ function MenuContent({ state }) {
               align={matchesMd ? "left" : "right"}
               variant={matchesXm ? "subtitle1" : matchesMd ? "h6" : "h5"}
               gutterBottom
+              onClick={hamdleOpenLogoutModal}
             >
               LOGOUT
             </Typography>
           </Grid>
         </Grid>
       </TopDrawer>
+
+      <LogoutAlertModal modalState={[openModal, setOpenModal]} />
     </>
   );
 }
