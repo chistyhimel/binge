@@ -37,24 +37,37 @@ function SearchResult() {
           marginTop={13}
           color="#d8d8d8"
         >
-          <Typography variant="h5">
+          <Typography
+            variant={matchesSm ? "subtitle1" : matchesMd ? "h6" : "h5"}
+          >
             SEARCH RESULT FOR "Popular Content"
           </Typography>
-          <Typography variant="subtitle1">Total 234 content found</Typography>
+          <Typography
+            variant={
+              matchesSm ? "caption" : matchesMd ? "subtitle2" : "subtitle1"
+            }
+          >
+            Total 234 content found
+          </Typography>
         </Box>
 
         <Box
           className={classes.row}
           position="relative"
           display="grid"
-          gridTemplateColumns="repeat(6, 1fr)"
+          gridTemplateColumns={`${
+            matchesSm
+              ? "repeat(2, 1fr)"
+              : matchesMd
+              ? "repeat(4, 1fr)"
+              : "repeat(6, 1fr)"
+          }`}
           gridGap="1.5rem"
-          overflow="auto"
         >
-          {[...new Array(6)].map(() => (
+          {[...new Array(matchesSm ? 2 : matchesMd ? 4 : 6)].map(() => (
             <Box
               marginY={6}
-              height="168px"
+              height={matchesSm ? "120px" : matchesMd ? "140px" : "168px"}
               width="100%"
               bgcolor="rgba(255, 255, 255, 0.027)"
               border="solid 4px rgba(255, 255, 255, 0.034)"
@@ -63,9 +76,13 @@ function SearchResult() {
           ))}
 
           <Box className={classes.centerText}>
-            <Typography variant="h5">NO RECORDS FOUND.</Typography>
             <Typography
-              variant="h4"
+              variant={matchesSm ? "subtitle1" : matchesMd ? "h6" : "h5"}
+            >
+              NO RECORDS FOUND.
+            </Typography>
+            <Typography
+              variant={matchesSm ? "h6" : matchesMd ? "h5" : "h4"}
               style={{ color: "#ffcb87", fontWeight: "bold" }}
             >
               TRY SOMETHING ELSE!

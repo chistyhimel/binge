@@ -70,6 +70,14 @@ function Sidebar({ drawerState }) {
           <ListItem divider button>
             <ListItemText
               className={classes.drawerItem}
+              onClick={() => handleClick("/notification")}
+            >
+              Notification
+            </ListItemText>
+          </ListItem>
+          <ListItem divider button>
+            <ListItemText
+              className={classes.drawerItem}
               onClick={() => handleClick("/device")}
             >
               Device

@@ -11,7 +11,7 @@ import {
 
 import { makeStyles, useTheme } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar.component";
 import Searchbar from "./../Searchbar/Searchbar.component";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -44,6 +44,7 @@ function Navbar() {
   // const matches = useMediaQuery("(max-width:600px)");
 
   const { pathname } = useLocation();
+  const history = useHistory();
   const [showNavbar, setShowNavbar] = useState(true);
   const [showGenre, setShowGenre] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -111,7 +112,9 @@ function Navbar() {
                   </Grid>
                   <Grid item xs={6} className={classes.tabWrapper}>
                     <Searchbar />
-                    <NotificationsIcon />
+                    <NotificationsIcon
+                      onClick={() => history.push("/notification")}
+                    />
                     <Box display="flex" alignItems="center">
                       <Typography
                         onClick={() => {

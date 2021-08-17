@@ -13,6 +13,7 @@ import WatchTv from "./pages/WatchTv.page";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import UserProfile from "./pages/UserProfile.page";
 import SearchResult from "./pages/SearchResult.page";
+import Notification from "./pages/Notification.page";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route exact path="/profile" component={UserProfile} />
               <Route exact path="/device" component={Device} />
               <Route exact path="/search-results" component={SearchResult} />
+              <Route exact path="/notification" component={Notification} />
               <Route exact path="*" component={NotFound} />
             </Switch>
           </ScrollToTop>
