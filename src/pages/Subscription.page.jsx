@@ -5,6 +5,7 @@ import {
   Button,
   Container,
   Divider,
+  Grid,
   Tab,
   Tabs,
   Typography,
@@ -36,14 +37,16 @@ function Subscription() {
             }}
           />
 
-          <Typography variant="h6">Currently Active Plan</Typography>
+          <Typography variant={matchesSm ? "subtitle1" : "h6"}>
+            Currently Active Plan
+          </Typography>
           <Box
             bgcolor="#8500009b"
             display="flex"
             justifyContent="space-between"
             alignItems="flex-end"
-            width="80%"
-            padding={4}
+            padding={matchesSm ? 2 : 4}
+            width={matchesSm ? "100%" : "80%"}
             marginY={3}
           >
             <div>
@@ -54,7 +57,11 @@ function Subscription() {
                 last paid: 02 January 2021
               </Typography>
             </div>
-            <Button variant="contained" color="secondary">
+            <Button
+              variant="contained"
+              color="secondary"
+              style={{ fontSize: `${matchesSm ? "10px" : ""}` }}
+            >
               Unsubscribe
             </Button>
           </Box>
@@ -66,14 +73,14 @@ function Subscription() {
               marginBottom: 25,
             }}
           />
-          <Typography variant="h6">
+          <Typography variant={matchesSm ? "subtitle1" : "h6"}>
             Available Plans for Binge Android TV Device.
           </Typography>
           <Box
             bgcolor="#d10404"
-            padding={6}
-            width="80%"
             borderRadius="5px"
+            padding={matchesSm ? 3 : 6}
+            width={matchesSm ? "100%" : "80%"}
             marginY={3}
           >
             <Box
@@ -82,7 +89,7 @@ function Subscription() {
               alignItems="center"
             >
               <div>
-                <Typography variant="h6">
+                <Typography variant={matchesSm ? "subtitle1" : "h6"}>
                   Monthly Pack <br /> with Broadband
                 </Typography>
                 <Button
@@ -98,7 +105,9 @@ function Subscription() {
                 </Button>
               </div>
               <div>
-                <Typography variant="h4">৳1099</Typography>
+                <Typography variant={matchesSm ? "h5" : "h4"}>
+                  ৳ 1099
+                </Typography>
                 <Typography variant="subtitle1">Validity: 30Days</Typography>
               </div>
             </Box>
@@ -131,7 +140,7 @@ function Subscription() {
             }}
           />
 
-          <Typography variant="h6">
+          <Typography variant={matchesSm ? "subtitle1" : "h6"}>
             Available Plans for Binge Small Screens.
           </Typography>
 
@@ -150,25 +159,77 @@ function Subscription() {
             }}
           />
 
-          <Typography>Bundle Pack</Typography>
+          <Typography color="secondary" style={{ margin: "35px 0 20px 0px" }}>
+            Bundle Pack
+          </Typography>
+          <Grid container spacing={3}>
+            {[...new Array(3)].map((item, idx) => (
+              <Grid item xs={12} sm={6} md={4}>
+                <Box
+                  textAlign="center"
+                  bgcolor="#1c1c1c"
+                  borderRadius="5px"
+                  padding={7}
+                >
+                  <Typography variant="h6" gutterBottom>
+                    Daily Plan
+                  </Typography>
+                  <Typography gutterBottom>
+                    BDT 10 (+VAT,SD,SC) Per Daily.
+                  </Typography>
+                  <Typography variant="h4" gutterBottom>
+                    ৳ 12.75
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    style={{
+                      color: "#d10404",
+                      height: "50px",
+                      width: "100%",
+                    }}
+                  >
+                    Buy Now
+                  </Button>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
 
-          <Box>
-            <Typography>Bundle Pack</Typography>
-            <Typography>Bundle Pack</Typography>
-            <Typography>Bundle Pack</Typography>
-            <Typography>Bundle Pack</Typography>
-            <Button
-              variant="contained"
-              style={{
-                background: "#850000",
-                color: "#FFFF",
-                height: "50px",
-                width: "100%",
-              }}
-            >
-              SUBSCRIBE NOW
-            </Button>
-          </Box>
+          <Typography color="secondary" style={{ margin: "35px 0 20px 0px" }}>
+            Data Pack
+          </Typography>
+          <Grid container spacing={3}>
+            {[...new Array(3)].map((item, idx) => (
+              <Grid item xs={12} sm={6} md={4}>
+                <Box
+                  textAlign="center"
+                  bgcolor="#1c1c1c"
+                  borderRadius="5px"
+                  padding={7}
+                >
+                  <Typography variant="h6" gutterBottom>
+                    Daily Plan
+                  </Typography>
+                  <Typography gutterBottom>
+                    BDT 10 (+VAT,SD,SC) Per Daily.
+                  </Typography>
+                  <Typography variant="h4" gutterBottom>
+                    ৳ 12.75
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    style={{
+                      color: "#d10404",
+                      height: "50px",
+                      width: "100%",
+                    }}
+                  >
+                    Buy Now
+                  </Button>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </Box>
     </>
