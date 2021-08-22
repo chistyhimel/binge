@@ -15,6 +15,9 @@ import UserProfile from "./pages/UserProfile.page";
 import SearchResult from "./pages/SearchResult.page";
 import Notification from "./pages/Notification.page";
 import Subscription from "./pages/Subscription.page";
+import UsageHistory from "./pages/UsageHistory.page";
+import ParentalContent from "./pages/ParentalContent.page";
+import MyList from "./pages/MyList.page";
 
 function App() {
   return (
@@ -34,8 +37,13 @@ function App() {
               <Route exact path="/search-results" component={SearchResult} />
               <Route exact path="/notification" component={Notification} />
               <Route exact path="/subscription" component={Subscription} />
-              <Route exact path="/usage-history" component={Subscription} />
-              <Route exact path="/parental-content" component={Subscription} />
+              <Route exact path="/usage-history" component={UsageHistory} />
+              <Route exact path="/my-list" component={MyList} />
+              <Route
+                exact
+                path="/parental-content"
+                component={ParentalContent}
+              />
               <Route exact path="*" component={NotFound} />
             </Switch>
           </ScrollToTop>

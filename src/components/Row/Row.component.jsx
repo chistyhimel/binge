@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Row({ title = "", fetchUrl, isLargeRow, tvData, tv }) {
+function Row({ title = null, fetchUrl, isLargeRow, tvData, tv }) {
   const [movies, setMovies] = useState([]);
   const sliderRef = useRef();
   const classes = useStyles();
@@ -115,14 +115,16 @@ function Row({ title = "", fetchUrl, isLargeRow, tvData, tv }) {
           >
             {title}
           </Typography>
-          <div>
-            <IconButton className={classes.arrowButton} onClick={gotoPrev}>
-              <ArrowBackIcon fontSize={matches ? "small" : "default"} />
-            </IconButton>
-            <IconButton className={classes.arrowButton} onClick={gotoNext}>
-              <ArrowForwardIcon fontSize={matches ? "small" : "default"} />
-            </IconButton>
-          </div>
+          {title ? (
+            <div>
+              <IconButton className={classes.arrowButton} onClick={gotoPrev}>
+                <ArrowBackIcon fontSize={matches ? "small" : "default"} />
+              </IconButton>
+              <IconButton className={classes.arrowButton} onClick={gotoNext}>
+                <ArrowForwardIcon fontSize={matches ? "small" : "default"} />
+              </IconButton>
+            </div>
+          ) : null}
         </Box>
         <main className={classes.sliderWrapper}>
           <Slider {...settings} ref={sliderRef}>

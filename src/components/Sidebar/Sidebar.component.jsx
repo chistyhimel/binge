@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.common.black,
   },
   drawerItem: {
-    color: "#FFFF",
+    color: "#d8d8d8",
   },
   wrapper: {
     paddingTop: 80,
@@ -65,7 +65,12 @@ function Sidebar({ drawerState }) {
             <ListItemText className={classes.drawerItem}>Watch TV</ListItemText>
           </ListItem>
           <ListItem divider button>
-            <ListItemText className={classes.drawerItem}>My List</ListItemText>
+            <ListItemText
+              className={classes.drawerItem}
+              onClick={() => handleClick("/my-list")}
+            >
+              My List
+            </ListItemText>
           </ListItem>
           <ListItem divider button>
             <ListItemText

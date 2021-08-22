@@ -105,7 +105,9 @@ function Navbar() {
                     <Typography component={Link} to="/watch-tv">
                       Watch TV
                     </Typography>
-                    <Typography>My List</Typography>
+                    <Typography component={Link} to="/my-list">
+                      My List
+                    </Typography>
                     <Typography component={Link} to="/device">
                       Device
                     </Typography>

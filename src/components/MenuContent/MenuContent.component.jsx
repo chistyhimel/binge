@@ -9,9 +9,6 @@ import React from "react";
 import TopDrawer from "./../TopDrawer/TopDrawer.component";
 import { makeStyles } from "@material-ui/styles";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
 import LogoutAlertModal from "../LogoutAlertModal/LogoutAlertModal.component";
 
 const useStyles = makeStyles((theme) => ({
