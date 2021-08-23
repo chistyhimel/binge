@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     "@media(max-width:600px)": {
       height: "40px",
       width: "140px",
+      fontSize: "11px",
     },
   },
 }));
@@ -71,8 +72,6 @@ function DetailsBanner() {
   const matchesSm = useMediaQuery("(max-width:600px)");
   const history = useHistory();
   const { id } = useParams();
-
-  console.log(id);
 
   return (
     <>

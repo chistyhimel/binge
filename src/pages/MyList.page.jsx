@@ -1,11 +1,29 @@
 import { Box, Typography, useMediaQuery } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "@material-ui/core";
 import Row from "./../components/Row/Row.component";
 import requests from "./../requests";
+import axios from "../axios";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles((theme) => ({}));
 
 function MyList() {
   const matchesSm = useMediaQuery("(max-width:600px)");
+  const classes = useStyles();
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    if (requests.fetchTrending) {
+      async function fetchData() {
+        const request = await axios.get(requests.fetchTrending);
+        setMovies(request.data.results.slice(0, 7));
+        return request;
+      }
+      fetchData();
+    }
+  }, []);
+
   return (
     <>
       <Box marginTop={10}>
@@ -24,9 +42,11 @@ function MyList() {
             </Typography>
           </Box>
         </Container>
-        <Row fetchUrl={requests.fetchTrending} />
-        <Row fetchUrl={requests.fetchTopRated} />
-        <Row fetchUrl={requests.fetchHorrorMovies} />
+        <div className={classes.contentWrapper}>
+          <Row fetchUrl={requests.fetchTrending} />
+          <Row fetchUrl={requests.fetchTopRated} />
+          <Row fetchUrl={requests.fetchHorrorMovies} />
+        </div>
       </Box>
     </>
   );
