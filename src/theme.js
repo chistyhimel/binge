@@ -16,4 +16,7 @@ export default createMuiTheme({
       main: red,
     },
   },
+  typography: {
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
+  },
 });

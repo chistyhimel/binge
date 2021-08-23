@@ -91,15 +91,15 @@ function Navbar() {
               ) : (
                 <Grid container spacing={10}>
                   <Grid item xs={6} className={classes.tabWrapper}>
-                    <Box display="flex" alignItems="center">
-                      <Typography
-                        onClick={() => {
-                          setShowGenre(!showGenre);
-                          setShowMenu(false);
-                        }}
-                      >
-                        Genre
-                      </Typography>
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      onClick={() => {
+                        setShowGenre(!showGenre);
+                        setShowMenu(false);
+                      }}
+                    >
+                      <Typography>Genre</Typography>
                       {showGenre ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
                     </Box>
                     <Typography component={Link} to="/watch-tv">
@@ -117,16 +117,16 @@ function Navbar() {
                     <NotificationsIcon
                       onClick={() => history.push("/notification")}
                     />
-                    <Box display="flex" alignItems="center">
-                      <Typography
-                        onClick={() => {
-                          setShowGenre(false);
-                          setShowMenu(!showMenu);
-                        }}
-                      >
-                        Menu
-                      </Typography>
-                      {showGenre ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      onClick={() => {
+                        setShowGenre(false);
+                        setShowMenu(!showMenu);
+                      }}
+                    >
+                      <Typography>Menu</Typography>
+                      {showMenu ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
                     </Box>
                   </Grid>
                 </Grid>
