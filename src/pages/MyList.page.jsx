@@ -13,16 +13,16 @@ function MyList() {
   const classes = useStyles();
   const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    if (requests.fetchTrending) {
-      async function fetchData() {
-        const request = await axios.get(requests.fetchTrending);
-        setMovies(request.data.results.slice(0, 7));
-        return request;
-      }
-      fetchData();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (requests.fetchTrending) {
+  //     async function fetchData() {
+  //       const request = await axios.get(requests.fetchTrending);
+  //       setMovies(request.data.results.slice(0, 7));
+  //       return request;
+  //     }
+  //     fetchData();
+  //   }
+  // }, []);
 
   return (
     <>
