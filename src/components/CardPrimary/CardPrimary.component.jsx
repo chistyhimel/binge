@@ -43,6 +43,7 @@ function CardPrimary({ movie, tv }) {
               ? movie.backdrop_path
               : `https://image.tmdb.org/t/p/original${movie.poster_path}`
           }
+          className="card__image"
           alt=""
         />
         <main className="card__text">

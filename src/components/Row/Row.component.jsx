@@ -15,7 +15,7 @@ import { makeStyles, useTheme } from "@material-ui/styles";
 import CardPrimary from "../CardPrimary/CardPrimary.component";
 
 const useStyles = makeStyles((theme) => ({
-  sliderWrapper: { overflow: "hidden", height: "auto" },
+  // sliderWrapper: { overflow: "hidden", height: "auto" },
 
   arrowButton: {
     border: "2px solid #E50914",
@@ -126,19 +126,18 @@ function Row({ title = null, fetchUrl, isLargeRow, tvData, tv }) {
             </div>
           ) : null}
         </Box>
-        <main className={classes.sliderWrapper}>
-          <Slider {...settings} ref={sliderRef}>
-            {tv
-              ? tvData.map((movie, idx) => (
-                  <CardPrimary key={movie.id} movie={movie} tv />
-                ))
-              : movies.length
-              ? movies.map((movie, idx) => (
-                  <CardPrimary key={movie.id} movie={movie} />
-                ))
-              : null}
-          </Slider>
-        </main>
+
+        <Slider {...settings} ref={sliderRef}>
+          {tv
+            ? tvData.map((movie, idx) => (
+                <CardPrimary key={movie.id} movie={movie} tv />
+              ))
+            : movies.length
+            ? movies.map((movie, idx) => (
+                <CardPrimary key={movie.id} movie={movie} />
+              ))
+            : null}
+        </Slider>
       </Container>
     </>
   );

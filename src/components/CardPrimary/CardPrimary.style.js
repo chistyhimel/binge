@@ -1,20 +1,16 @@
 import styled from "styled-components";
 
 export const CardPrimaryWrapper = styled.div`
-  height: 180px;
+  height: 350px;
   width: 180px;
-  padding: 0px 0 180px 0;
   cursor: pointer;
-
   @media (max-width: 1200px) {
-    height: 160px;
+    height: 330px;
     width: 160px;
-    padding: 0px 0 170px 0;
   }
   @media (max-width: 600px) {
-    height: 140px;
+    height: 310px;
     width: 140px;
-    padding: 0px 0 170px 0;
   }
 
   &:hover {
@@ -36,10 +32,21 @@ export const CardPrimaryWrapper = styled.div`
   img {
     transition: all 0.4s ease-in-out;
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    width: 180px;
+    height: 180px;
     border: solid 4px rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+
+    @media (max-width: 1200px) {
+      height: 160px;
+      width: 160px;
+      /* padding: 0px 0 170px 0; */
+    }
+    @media (max-width: 600px) {
+      height: 140px;
+      width: 140px;
+      /* padding: 0px 0 170px 0; */
+    }
   }
   .card__text {
     transition: all 0.4s ease-in-out;

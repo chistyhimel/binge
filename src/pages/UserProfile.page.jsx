@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     margin: "0 auto",
     width: "120px",
-    fontSize: "12px",
+    fontSize: "10px",
     backgroundColor: "rgba(154, 0, 0, 0.8)",
   },
   form: {
